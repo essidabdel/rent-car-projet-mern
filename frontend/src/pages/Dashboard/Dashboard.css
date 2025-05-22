@@ -1,0 +1,130 @@
+.dashboard {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(79,70,229,0.10);
+  padding: 2.5rem 2rem;
+}
+
+.dashboard h2 {
+  color: #4f46e5;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.dashboard form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.dashboard input {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #a5b4fc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f3f4f6;
+  min-width: 120px;
+  transition: border 0.2s;
+}
+
+.dashboard input:focus {
+  border: 1.5px solid #4f46e5;
+  outline: none;
+}
+
+.dashboard button[type="submit"] {
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.dashboard button[type="submit"]:hover {
+  background: #3730a3;
+}
+
+.dashboard ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard li {
+  background: #f3f4f6;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(79,70,229,0.04);
+  gap: 1rem;
+}
+
+.dashboard li strong {
+  color: #4f46e5;
+  min-width: 120px;
+}
+
+.dashboard li button {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background 0.2s;
+  margin-left: 1rem;
+}
+
+.dashboard li button:hover {
+  background: #b91c1c;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.add-vehicule-btn {
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.add-vehicule-btn:hover {
+  background: #3730a3;
+}
+
+.dashboard li .edit-btn {
+  background: #22c55e;
+  color: #fff;
+}
+
+.dashboard li .edit-btn:hover {
+  background: #15803d;
+}
+
+.dashboard-price {
+  flex: 1;
+  text-align: center;
+  font-weight: 500;
+  color: #22223b;
+  min-width: 80px;
+}
