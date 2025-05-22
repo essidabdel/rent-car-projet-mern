@@ -1,0 +1,123 @@
+.all-products {
+  max-width: 1100px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(79,70,229,0.10);
+  padding: 2.5rem 2rem;
+}
+
+.all-products h2 {
+  color: #4f46e5;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.all-products form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.all-products input {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #a5b4fc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f3f4f6;
+  min-width: 120px;
+  transition: border 0.2s;
+}
+
+.all-products input:focus {
+  border: 1.5px solid #4f46e5;
+  outline: none;
+}
+
+.all-products button[type="submit"] {
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.all-products button[type="submit"]:hover {
+  background: #3730a3;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2rem;
+}
+
+.product-card {
+  background: #f3f4f6;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(79,70,229,0.06);
+  padding: 1.2rem 1rem 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s, transform 0.2s;
+  text-align: center;
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 32px rgba(79,70,229,0.15);
+  transform: translateY(-4px) scale(1.03);
+}
+
+.product-card img {
+  width: 100%;
+  max-width: 180px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  background: #fff;
+}
+
+.product-card h3 {
+  color: #4f46e5;
+  margin: 0.5rem 0 0.2rem 0;
+}
+
+.product-card p {
+  margin: 0.2rem 0;
+  font-size: 1rem;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #4f46e5;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  color: #666666;
+}
+
+.pagination span {
+  font-weight: bold;
+}

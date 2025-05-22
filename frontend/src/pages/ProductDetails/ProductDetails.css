@@ -1,0 +1,33 @@
+.product-details {
+  max-width: 500px;
+  margin: 60px auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(79,70,229,0.10);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.product-details h2 {
+  color: #4f46e5;
+  margin-bottom: 1.2rem;
+}
+
+.product-details img {
+  width: 100%;
+  max-width: 320px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1.2rem;
+  background: #f3f4f6;
+}
+
+.product-details p {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.product-details strong {
+  color: #4f46e5;
+}
