@@ -22,7 +22,7 @@ CarShare est une plateforme MERN qui permet aux utilisateurs de proposer leurs v
 
 ```bash
 git clone https://github.com/essidabdel/rent-car-projet-mern.git
-cd CarLoc
+cd rent-car-projet-mern
 ```
 
 ### 🔙 Backend
