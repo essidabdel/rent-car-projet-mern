@@ -1,64 +1,93 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from '../../api';
 import './AllProducts.css';
 import { Link } from 'react-router-dom';
 
 const AllProducts = () => {
-  const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
   const [filters, setFilters] = useState({
     keyword: '',
     category: '',
     minPrice: '',
     maxPrice: ''
   });
-
-  const fetchProducts = useCallback(async () => {
-    const params = {};
-    if (filters.keyword) params.keyword = filters.keyword;
-    if (filters.category) params.category = filters.category;
-    if (filters.minPrice) params.minPrice = filters.minPrice;
-    if (filters.maxPrice) params.maxPrice = filters.maxPrice;
-
-    const res = await axios.get('/products', { params });
-    setProducts(res.data);
-  }, [filters]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 4;
 
   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await axios.get('/products'); // backend retourne un tableau simple
+        setAllProducts(Array.isArray(res.data) ? res.data : []);
+      } catch (err) {
+        console.error('Erreur API', err);
+        setAllProducts([]);
+      }
+    };
+
     fetchProducts();
-  }, [fetchProducts]);
+  }, []);
 
   const handleChange = (e) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
+    setCurrentPage(1); // reset page à chaque filtre
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    fetchProducts();
-  };
+  const filteredProducts = allProducts.filter(p => {
+    const keywordMatch = p.name?.toLowerCase().includes(filters.keyword.toLowerCase());
+    const categoryMatch = p.category?.toLowerCase().includes(filters.category.toLowerCase());
+    const price = parseFloat(p.price);
+    const min = filters.minPrice ? parseFloat(filters.minPrice) : 0;
+    const max = filters.maxPrice ? parseFloat(filters.maxPrice) : Infinity;
+    const priceMatch = price >= min && price <= max;
+
+    return keywordMatch && categoryMatch && priceMatch;
+  });
+
+  const indexOfLast = currentPage * productsPerPage;
+  const indexOfFirst = indexOfLast - productsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirst, indexOfLast);
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   return (
     <div className="all-products">
       <h2>Véhicules disponibles</h2>
 
-      <form onSubmit={handleSearch}>
-        <input name="keyword" placeholder="Recherche" onChange={handleChange} />
-        <input name="category" placeholder="Catégorie" onChange={handleChange} />
-        <input name="minPrice" type="number" placeholder="Prix min" onChange={handleChange} />
-        <input name="maxPrice" type="number" placeholder="Prix max" onChange={handleChange} />
-        <button type="submit">Filtrer</button>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <input name="keyword" placeholder="Recherche" value={filters.keyword} onChange={handleChange} />
+        <input name="category" placeholder="Catégorie" value={filters.category} onChange={handleChange} />
+        <input name="minPrice" type="number" placeholder="Prix min" value={filters.minPrice} onChange={handleChange} />
+        <input name="maxPrice" type="number" placeholder="Prix max" value={filters.maxPrice} onChange={handleChange} />
+        <button disabled>Filtrer</button> {/* bouton inutile, filtres auto */}
       </form>
 
       <div className="product-list">
-        {products.map(p => (
-          <Link to={`/product/${p._id}`} key={p._id} className="product-card">
-            <img src={p.photo} alt={p.name} />
-            <h3>{p.name}</h3>
-            <p>{p.price}€/jour</p>
-            <p>Catégorie : {p.category}</p>
-            <p>Propriétaire : {p.owner?.username}</p>
-          </Link>
-        ))}
+        {currentProducts.length > 0 ? (
+          currentProducts.map(p => (
+            <Link to={`/product/${p._id}`} key={p._id} className="product-card">
+              <img src={p.photo} alt={p.name} />
+              <h3>{p.name}</h3>
+              <p>{p.price}€/jour</p>
+              <p>Catégorie : {p.category}</p>
+              <p>Propriétaire : {p.owner?.username}</p>
+            </Link>
+          ))
+        ) : (
+          <p>Aucun véhicule trouvé.</p>
+        )}
       </div>
+
+      {totalPages > 1 && (
+        <div className="pagination">
+          <button onClick={() => setCurrentPage(p => Math.max(p - 1, 1))} disabled={currentPage === 1}>
+            Précédent
+          </button>
+          <span>Page {currentPage} / {totalPages}</span>
+          <button onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))} disabled={currentPage === totalPages}>
+            Suivant
+          </button>
+        </div>
+      )}
     </div>
   );
 };

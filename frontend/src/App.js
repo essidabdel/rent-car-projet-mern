@@ -11,18 +11,28 @@ import EditProduct from './pages/EditProduct/EditProduct';
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<AllProducts />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
-        <Route path="/create-product" element={<CreateProduct />} />
-        <Route path="/edit-product/:id" element={<EditProduct />} />
-      </Routes>
-    </Router>
+    <div
+      style={{
+        backgroundImage: "url('/1.jpg')",
+        backgroundSize: '100% 100%',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+        minHeight: '100vh',
+      }}
+    >
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<AllProducts />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/create-product" element={<CreateProduct />} />
+          <Route path="/edit-product/:id" element={<EditProduct />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
