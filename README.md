@@ -1,4 +1,4 @@
-# 🚗 CarLoc – Application MERN de location de voitures entre particuliers
+# 🚗 CarShare – Application MERN de location de voitures entre particuliers
 
 ## 📚 Description
 
