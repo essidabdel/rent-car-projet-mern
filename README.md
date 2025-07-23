@@ -81,7 +81,4 @@ rent-car-projet-mern//
 ```
 
 ## 📦 Auteurs
-
-- Yassine Kochat
-- Sara Tissemlal
 - Abdellatif Essid
